@@ -14,10 +14,18 @@ def get_winner(player_choice, computer_choice):
     else:
         return 'computer'
 
-def play_game():
-    # First pass - handling rematch for ties
+def get_valid_player_choice():
     while True:
         player_choice = input("Enter rock, paper, or scissors: ").lower()
+        if player_choice in ['rock', 'paper', 'scissors']:
+            return player_choice
+        else:
+            print("Invalid choice! Please try again.")
+
+def play_game():
+    # Second pass - handle input validation and player exit option
+    while True:
+        player_choice = get_valid_player_choice()
         computer_choice = get_computer_choice()
 
         print(f"Computer chose: {computer_choice}")
