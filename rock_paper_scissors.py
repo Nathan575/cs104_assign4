@@ -1,39 +1,33 @@
 import random
 
-def greet_user():
-    print("Welcome to Rock, Paper, Scissors!")
-    print("Rules: Rock beats Scissors, Scissors beats Paper, Paper beats Rock.")
-
-def get_user_choice():
-    return input("Enter your choice (rock, paper, or scissors): ").strip().lower()
-
 def get_computer_choice():
-    return random.choice(["rock", "paper", "scissors"])
+    choices = ['rock', 'paper', 'scissors']
+    return random.choice(choices)
 
-
-
-
-def determine_winner(user_choice, computer_choice):
-    if user_choice == computer_choice:
-        return "It's a tie!"
-    elif (user_choice == "rock" and computer_choice == "scissors") or \
-         (user_choice == "scissors" and computer_choice == "paper") or \
-         (user_choice == "paper" and computer_choice == "rock"):
-        return "You win!"
+def get_winner(player_choice, computer_choice):
+    if player_choice == computer_choice:
+        return 'tie'
+    elif (player_choice == 'rock' and computer_choice == 'scissors') or \
+         (player_choice == 'scissors' and computer_choice == 'paper') or \
+         (player_choice == 'paper' and computer_choice == 'rock'):
+        return 'player'
     else:
-        return "Computer wins!"
+        return 'computer'
 
+def play_game():
+    # First pass - handling rematch for ties
+    while True:
+        player_choice = input("Enter rock, paper, or scissors: ").lower()
+        computer_choice = get_computer_choice()
 
+        print(f"Computer chose: {computer_choice}")
+        winner = get_winner(player_choice, computer_choice)
 
+        if winner == 'tie':
+            print("It's a tie! Rematch!")
+        else:
+            print(f"{winner.capitalize()} wins!")
+            break
 
-
-def main():
-    greet_user()
-    user_choice = get_user_choice()
-    computer_choice = get_computer_choice()
-
-    print(f"Computer chose: {computer_choice}")
-    print(determine_winner(user_choice, computer_choice))
-
-if __name__ == "__main__":
-    main()
+# Start the game
+play_game()
