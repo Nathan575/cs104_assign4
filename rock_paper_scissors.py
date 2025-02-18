@@ -28,7 +28,12 @@ def determine_winner(user_choice, computer_choice):
 
 
 def main():
-    print("Welcome to the game!")
+    greet_user()
+    user_choice = get_user_choice()
+    computer_choice = get_computer_choice()
+
+    print(f"Computer chose: {computer_choice}")
+    print(determine_winner(user_choice, computer_choice))
 
 if __name__ == "__main__":
     main()
